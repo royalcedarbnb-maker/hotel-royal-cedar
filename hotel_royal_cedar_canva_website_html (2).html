@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hotel Royal Cedar — Where Luxury Meets the Mountains</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Golden accent and deep green theme */
+    :root{
+      --forest:#08341a;
+      --deep-forest:#052814;
+      --gold:#D4AF37;
+      --warm:#f6ead6;
+    }
+
+    body{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,247,249,0.98));}
+
+    /* Hero background overlay */
+    .hero-bg{background-size:cover;background-position:center;}
+    .gold-glow{box-shadow:0 6px 30px rgba(212,175,55,0.12);}
+
+    /* Subtle snowflakes (CSS + small JS spawner) */
+    .snowflake{position:fixed;top:-10px;z-index:60;pointer-events:none;opacity:0.9;font-size:14px;transform:translate3d(0,0,0);}
+
+    /* Smooth scroll behavior */
+    html{scroll-behavior:smooth}
+
+    /* Fancy card borders */
+    .card-border{border:1px solid rgba(212,175,55,0.12);backdrop-filter:blur(6px);background:rgba(255,255,255,0.5)}
+
+    /* Gallery hover */
+    .gallery-item{transition:transform .45s ease, box-shadow .45s ease}
+    .gallery-item:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.18)}
+
+    /* Subtle entrance transitions */
+    .reveal{opacity:0;transform:translateY(12px);transition:all .7s cubic-bezier(.2,.9,.2,1)}
+    .reveal.in{opacity:1;transform:translateY(0)}
+
+    /* Button gold gradient */
+    .btn-gold{background:linear-gradient(90deg,var(--gold), #ffc857);color:#03140a}
+
+    /* Responsive hero height */
+    @media(min-width:1024px){.hero-height{height:86vh}}
+    @media(max-width:1023px){.hero-height{height:56vh}}
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+  <!-- Snow container (JS will spawn ❄️) -->
+  <div id="snow"></div>
+
+  <!-- NAV -->
+  <header class="fixed w-full z-40">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+      <a href="#hero" class="flex items-center gap-3 text-white ml-2 lg:ml-0">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-slate-800 to-green-900 flex items-center justify-center gold-glow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15 8H9L12 2Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hidden sm:block">
+          <div class="text-sm font-semibold" style="color:var(--forest)">Hotel Royal Cedar</div>
+          <div class="text-xs -mt-1" style="color:rgba(3,20,10,0.6)">Shimla — Luxury Hilltop Stay</div>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#about" class="text-sm">About</a>
+        <a href="#rooms" class="text-sm">Rooms & Suites</a>
+        <a href="#dining" class="text-sm">Dining</a>
+        <a href="#gallery" class="text-sm">Gallery</a>
+        <a href="#events" class="text-sm">Events</a>
+        <a href="#contact" class="text-sm">Contact</a>
+        <a href="#booking" class="ml-4 px-4 py-2 rounded-full btn-gold text-sm font-semibold">Book Your Stay</a>
+      </div>
+
+      <div class="md:hidden">
+        <button id="mobileToggle" class="p-2 bg-white rounded-lg shadow-sm">Menu</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="hero-height hero-bg relative pt-20" style="background-image: url('https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1800&q=80');">
+    <div class="absolute inset-0 bg-gradient-to-t from-white/20 via-white/10 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full flex items-center">
+      <div class="w-full lg:w-2/3 text-white z-20">
+        <div class="bg-gradient-to-br from-white/6 to-transparent p-6 rounded-2xl card-border max-w-xl">
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" style="color:white; text-shadow: 0 6px 30px rgba(0,0,0,0.45);">Where Luxury Meets the Mountains</h1>
+          <p class="mt-4 text-sm md:text-base">Experience the warmth of true hospitality with panoramic cedar views, handcrafted dining, and intimate winter nights.</p>
+
+          <div class="mt-6 flex gap-3 items-center">
+            <a href="#booking" class="px-5 py-3 rounded-full btn-gold text-sm font-semibold shadow-md">Book Your Stay</a>
+            <a href="#gallery" class="px-4 py-3 rounded-full bg-white/10 text-white text-sm">View Gallery</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal in">
+        <img src="https://images.unsplash.com/photo-1519821172141-b5a3e6f6f7b4?auto=format&fit=crop&w=900&q=60" alt="cozy bonfire" class="rounded-2xl shadow-lg gallery-item"/>
+      </div>
+      <div class="reveal in">
+        <h2 class="text-2xl font-bold" style="color:var(--forest)">About Royal Cedar</h2>
+        <p class="mt-4 text-slate-600">Royal Cedar is a boutique hotel nestled in the heart of Shimla, perched among snow-kissed cedar trees. We blend classic mountain charm with contemporary comforts, offering bonfire nights, gourmet dining, and personalized service tailored to families and couples alike.</p>
+        <ul class="mt-4 space-y-2 text-slate-600">
+          <li>• Intimate bonfire evenings with curated drinks</li>
+          <li>• Gourmet seasonal menu featuring local produce</li>
+          <li>• Personalized concierge & winter activity planning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS -->
+  <section id="rooms" class="bg-gradient-to-b from-white to-white/95 py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <h3 class="text-2xl font-bold" style="color:var(--forest)">Rooms & Suites</h3>
+      <p class="mt-2 text-slate-600">Choose the comfort that suits you — all thoughtfully furnished with warm tones, plush textiles, and sweeping mountain views.</p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <article class="p-6 rounded-2xl card-border">
+          <h4 class="text-lg font-semibold">Deluxe Room</h4>
+          <p class="mt-2 text-sm text-slate-600">Cozy interiors, king-size bed, mountain view windows, and private balcony.</p>
+          <ul class="mt-3 text-sm text-slate-600 space-y-1">
+            <li>• Private balcony</li>
+            <li>• Radiant heating & plush blankets</li>
+            <li>• Complimentary welcome drink</li>
+          </ul>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="p-6 rounded-2xl card-border">
+          <h4 class="text-lg font-semibold">Premium Room</h4>
+          <p class="mt-2 text-sm text-slate-600">Enhanced living area, panoramic windows, curated in-room treats.</p>
+          <ul class="mt-3 text-sm text-slate-600 space-y-1">
+            <li>• Floor-to-ceiling views</li>
+            <li>• Nespresso machine & minibar</li>
+            <li>• In-room fireplace (where available)</li>
+          </ul>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="p-6 rounded-2xl card-border">
+          <h4 class="text-lg font-semibold">Family Suite</h4>
+          <p class="mt-2 text-sm text-slate-600">Spacious layout with two bedrooms, living space, and private balcony for family comfort.</p>
+          <ul class="mt-3 text-sm text-slate-600 space-y-1">
+            <li>• Separate living area</li>
+            <li>• Cozy seating & dining nook</li>
+            <li>• Baby & family-friendly amenities</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINING & EXPERIENCES -->
+  <section id="dining" class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal in">
+        <h3 class="text-2xl font-bold" style="color:var(--forest)">Dining & Experiences</h3>
+        <p class="mt-3 text-slate-600">From intimate bonfire nights to gourmet tastings and live music, Royal Cedar curates seasonal experiences designed to warm the soul.</p>
+        <ul class="mt-4 text-slate-600 space-y-2">
+          <li>• Bonfires with curated welcome drinks</li>
+          <li>• Live music & festive events</li>
+          <li>• Guided winter walks & seasonal activities</li>
+        </ul>
+      </div>
+      <div class="reveal in">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=900&q=60" alt="dining" class="rounded-2xl shadow-lg gallery-item"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="bg-white/95 py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <h3 class="text-2xl font-bold" style="color:var(--forest)">Gallery</h3>
+      <p class="mt-2 text-slate-600">Elegant captures tinted with warm winter tones.</p>
+      <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img class="rounded-lg gallery-item" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=60" alt="gallery1">
+        <img class="rounded-lg gallery-item" src="https://images.unsplash.com/photo-1505765051673-2a0f3b4a4f6f?auto=format&fit=crop&w=600&q=60" alt="gallery2">
+        <img class="rounded-lg gallery-item" src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=600&q=60" alt="gallery3">
+        <img class="rounded-lg gallery-item" src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=60" alt="gallery4">
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL EVENTS -->
+  <section id="events" class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-2xl font-bold" style="color:var(--forest)">Special Events</h3>
+        <div class="mt-4 p-6 rounded-2xl card-border">
+          <h4 class="text-lg font-semibold">Royal Cedar Christmas & New Year Gala 2025</h4>
+          <p class="mt-2 text-slate-600">Join us from 21 Dec to 31 Dec for a magical festive celebration. Entry: <span class="font-semibold">₹699/person</span>. Includes:</p>
+          <ul class="mt-3 text-slate-600 space-y-2">
+            <li>• Bonfire & warm welcome drinks</li>
+            <li>• Live music & DJ sets, dance floor</li>
+            <li>• Festive décor, lighting & seasonal menu</li>
+            <li>• Special family-friendly nights and couple’s evenings</li>
+          </ul>
+          <div class="mt-4">
+            <a href="#booking" class="px-4 py-2 rounded-full btn-gold font-semibold">Book Gala Seat (₹699)</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=900&q=60" alt="event" class="rounded-2xl shadow-lg gallery-item"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & LOCATION -->
+  <section id="contact" class="bg-white/95 py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-2xl font-bold" style="color:var(--forest)">Contact & Location</h3>
+        <p class="mt-2 text-slate-600">Reach out to plan your stay or ask about events and group bookings.</p>
+
+        <div class="mt-4 p-6 rounded-2xl card-border">
+          <form id="contactForm" class="space-y-4">
+            <div>
+              <label class="text-sm">Name</label>
+              <input required class="w-full mt-1 p-3 rounded-lg border" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="text-sm">Email</label>
+              <input type="email" required class="w-full mt-1 p-3 rounded-lg border" placeholder="you@domain.com" />
+            </div>
+            <div>
+              <label class="text-sm">Message</label>
+              <textarea required class="w-full mt-1 p-3 rounded-lg border" rows="4" placeholder="How can we help?"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="px-4 py-2 rounded-full btn-gold font-semibold">Send Inquiry</button>
+            </div>
+            <p class="text-xs text-slate-500">Note: This form is non-functional in the static demo. Connect with a simple backend or form service to receive messages.</p>
+          </form>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-full h-80 rounded-2xl overflow-hidden shadow-lg">
+          <iframe class="w-full h-full" loading="lazy" frameborder="0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Shimla&output=embed"></iframe>
+        </div>
+
+        <div class="mt-4 text-slate-600 text-sm">
+          <p><strong>Address:</strong> Hotel Royal Cedar, Near Cedar Ridge, Shimla, Himachal Pradesh</p>
+          <p class="mt-1"><strong>Phone:</strong> +91 98xxxx xxxx</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA FOOTER -->
+  <footer id="booking" class="bg-gradient-to-t from-white/95 to-transparent py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h4 class="text-xl font-bold">Reserve your winter escape</h4>
+        <p class="text-slate-600">Flexible stays, personalized packages, and warm hospitality await.</p>
+      </div>
+      <div class="flex gap-4">
+        <a href="#contact" class="px-6 py-3 rounded-full btn-gold font-semibold">Enquire Now</a>
+        <a href="#contact" class="px-6 py-3 rounded-full border">Call Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple snowflake generator
+    const snowContainer = document.getElementById('snow');
+    const SNOW_COUNT = 22;
+    function rand(min,max){ return Math.random()*(max-min)+min }
+    for(let i=0;i<SNOW_COUNT;i++){
+      const span = document.createElement('div');
+      span.className = 'snowflake';
+      span.innerHTML = '❄';
+      span.style.left = rand(0,100)+'%';
+      span.style.fontSize = rand(12,32)+'px';
+      span.style.opacity = rand(0.5,0.95);
+      span.style.transition = 'transform linear';
+      span.style.top = '-40px';
+      span.style.pointerEvents = 'none';
+      snowContainer.appendChild(span);
+
+      const duration = rand(10,26);
+      const delay = rand(0,8);
+      span.animate([
+        { transform: `translateY(-10vh) rotate(0deg)`, offset: 0 },
+        { transform: `translateY(110vh) rotate(240deg)`, offset: 1 }
+      ],{duration: duration*1000, iterations: Infinity, delay: delay*1000});
+    }
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll(){
+      for(const el of reveals){
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight - 70){ el.classList.add('in') }
+      }
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Mobile menu (simple)
+    const mobileToggle = document.getElementById('mobileToggle');
+    mobileToggle && mobileToggle.addEventListener('click',()=>{
+      alert('Mobile menu: In this template you can add a slide-in nav or link to pages.');
+    })
+
+    // Contact form demo handler
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Thank you — this demo template doesn\'t send messages. Hook the form to your email service or backend.');
+    });
+  </script>
+</body>
+</html>
